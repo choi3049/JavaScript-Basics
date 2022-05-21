@@ -33,3 +33,32 @@ parseInt(111, 2); //111이라는 숫자를 2진법으로 해석 결과 값: 7
 
 undefined == null; //결과 값: true
 undefined === null; //결과 값: false
+
+let string = 123123; // 변수 선언 후 초기화
+string; //변수 호풀
+
+let change = "change";
+change = "del";
+
+let string1 = "Hello";
+let string2 = "world";
+console.log(string1 + string2);
+
+string1 += 3;
+
+console.log("엄청 긴 문자열을 수정합니다.");
+console.log("엄청 긴 문자열을 수정합니다.");
+console.log("엄청 긴 문자열을 수정합니다.");
+
+let string3 = "엄청 긴 문자열입니다."; //변수로 코드 간소화 가능
+console.log(string1);
+console.log(string1);
+console.log(string1);
+
+const a = 1; // 상수: 변하지 않는 값
+
+let b = 1; // 서로 숫자 바꾸기
+let c = 2;
+let temp = b;
+b = c;
+c = temp;

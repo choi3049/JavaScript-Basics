@@ -30,7 +30,7 @@ target.unshift("가"); //배열 맨 앞에 추가 가능
 console.log(target2);
 
 const target3 = ["가", "나", "다", "라", "마"];
-target.push("바"); //배열 맨 앞에 추가 가능
+target.push("바"); //배열 맨 뒤에 추가 가능
 console.log(target3);
 
 const target = ["가", "나", "다", "라", "마"];

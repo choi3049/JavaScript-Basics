@@ -24,40 +24,23 @@
       //   const yesOrNo = confirm("yes?"); //확인, 취소창 생성
 
       const onClickButton = () => {
-        if (!word) {
-          //비어있다
-          word = newWord;
-          $word.textContent = word;
+        if (!word || word[word.length - 1] === newWord[0]) {
+          // 제시어가 비어 있거나 올바른 단어인가?
 
-          const order = parseInt($order.textContent); //현재 순서
+          word = newWord; // 입력한 단어가 제시어가 된다.
+          $word.textContent = word; // 화면에 제시어 표시
+          const order = Number($order.textContent);
           if (order + 1 > number) {
             $order.textContent = 1;
           } else {
             $order.textContent = order + 1;
           }
-          $input.value = "";
-          $input.focus(); //입력창 커서 유지
         } else {
-          //비어 있지 않다
-          if (word[word.length - 1] === newWord[0]) {
-            //올바른가
-            word = newWord;
-            $word.textContent = word;
-            const order = Number($order.textContent);
-            if (order + 1 > number) {
-              $order.textContent = 1;
-            } else {
-              $order.textContent = order + 1;
-            }
-            $input.value = "";
-            $input.focus();
-          } else {
-            //올바르지 않은가
-            alert("올바르지 않은 단어입니다!");
-            $input.value = "";
-            $input.focus();
-          }
+          // 올바르지 않다.
+          alert("올바르지 않은 단어입니다!");
         }
+        $input.value = "";
+        $input.focus();
       };
 
       const onInput = (event) => {

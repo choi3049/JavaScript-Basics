@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>word-relay</title>
+  </head>
+  <body>
+    <div><span id="order">1</span>人目の参加者です。</div>
+    <div>start word:<span id="word"></span></div>
+    <input type="text" />
+    <button>入力</button>
+    <script>
+      const number = parseInt(prompt("何人参加しますか?")); // 입력창 생성
+      const $button = document.querySelector("button");
+      const $input = document.querySelector("input");
+      const $word = document.querySelector("#word");
+      const $order = document.querySelector("#order");
+
+      let word; // 제시어
+      let newWord; // 입력한 단어
+      //   alert(number); //경고 메시지 생성
+      //   const yesOrNo = confirm("yes?"); //확인, 취소창 생성
+
+      const onClickButton = () => {
+        if (!word) {
+          //비어있다
+          word = newWord;
+          $word.textContent = word;
+
+          const order = parseInt($order.textContent); //현재 순서
+          if (order + 1 > number) {
+            $order.textContent = 1;
+          } else {
+            $order.textContent = order + 1;
+          }
+          $input.value = "";
+          $input.focus(); //입력창 커서 유지
+        } else {
+          //비어 있지 않다
+          if (word[word.length - 1] === newWord[0]) {
+            //올바른가
+            word = newWord;
+            $word.textContent = word;
+            const order = Number($order.textContent);
+            if (order + 1 > number) {
+              $order.textContent = 1;
+            } else {
+              $order.textContent = order + 1;
+            }
+            $input.value = "";
+            $input.focus();
+          } else {
+            //올바르지 않은가
+            alert("올바르지 않은 단어입니다!");
+            $input.value = "";
+            $input.focus();
+          }
+        }
+      };
+
+      const onInput = (event) => {
+        // console.log("文字入力", event.target.value); //입력된 문자 실시간으로 콘솔에서 확인
+        newWord = event.target.value; // 입력한 단어를 현재 단어로
+      };
+
+      $button.addEventListener("click", onClickButton);
+      $input.addEventListener("input", onInput);
+    </script>
+  </body>
+</html>

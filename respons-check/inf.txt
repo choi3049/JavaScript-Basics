@@ -1,0 +1,25 @@
+태그.classList.contains('클래스');  // 태그에 해당 클래스가 들어 있는지 확인 가능
+태그.classList.add('클래스'); // 추가
+태그.classList.replace('기존클래스', '수정클래스'); // 수정
+태그.classList.remove('클래스'); // 제거
+
+
+//현재시각 표시
+> new Date(2021, 2, 31);
+< Wed Mar 31 2021 00:00:00 GMT+0900 (대한민국 표준시)
+> new Date(2021, 2, 31, 18, 30, 5);
+< Wed Mar 31 2021 18:30:05 GMT+0900 (대한민국 표준시)
+
+//날짜 차 구하기 Dare 함수
+const diff = new Date(2021, 2, 3) - new Date(2021, 1, 21);
+console.log(diff / 1000 / 60 / 60 / 24);
+
+
+//reduce 함수
+배열.reduce((누적값, 현잿값) => {
+  return 새로운누적값;
+}, 초깃값); // 초기값을 안넣으면 배열 첫번째가 초기값
+
+[1, 2, 3, 4, 5].reduce((a, c) => {
+  return a + c;
+}, 0); 

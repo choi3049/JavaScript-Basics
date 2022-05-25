@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>반응속도</title>
+    <style>
+      #screen {
+        width: 300px;
+        height: 200px;
+        text-align: center;
+        user-select: none;
+      }
+      #screen.waiting {
+        background-color: aqua;
+      }
+      #screen.ready {
+        background-color: red;
+        color: white;
+      }
+      #screen.now {
+        background-color: greenyellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="screen" class="waiting">클릭해서 시작하세요</div>
+    <div id="result"></div>
+    <div id="best-time"></div>
+    <script>
+      const $screen = document.querySelector("#screen");
+      const $result = document.querySelector("#result");
+      const $bestTime = document.querySelector("#best-time");
+      let startTime;
+      let endTime;
+      const records = [];
+      const bestTimeTop = [];
+      let timeoutId;
+
+      $screen.addEventListener("click", function () {
+        if ($screen.classList.contains("waiting")) {
+          // 대기 화면
+          $screen.classList.remove("waiting");
+          $screen.classList.add("ready");
+          $screen.textContent = "초록색이 되면 클릭하세요";
+          timeoutId = setTimeout(function () {
+            startTime = new Date();
+            $screen.classList.remove("ready");
+            $screen.classList.add("now");
+            $screen.textContent = "클릭하세요!";
+          }, Math.floor(Math.random() * 1000) + 2000); // 2000~3000 사이 수
+        } else if ($screen.classList.contains("ready")) {
+          // 준비 화면
+          clearTimeout(timeoutId);
+          $screen.classList.remove("ready");
+          $screen.classList.add("waiting");
+          $screen.textContent = "너무 성급하시군요!";
+        } else if ($screen.classList.contains("now")) {
+          // 클릭 화면
+          endTime = new Date();
+          const current = endTime - startTime;
+          records.push(current);
+          const average = records.reduce((a, c) => a + c) / records.length;
+          $result.textContent = `현재 ${current}ms, 평균: ${average}ms`;
+
+          // 기록 저장 -> 큰값 정열 -> 상위기록 5개만 출력
+          records.sort();
+          $bestTime.textContent = `최고기록 TOP5 : ${records.slice(0, 5)}`;
+
+          // const topFive = records.sort((p, c) => p - c).slice(0, 5);
+          // topFive.forEach((top, index) => {
+          //   $result.append(
+          //     document.createElement("br"),
+          //     `${index + 1}위: ${top}ms`
+          //   );
+          // });
+
+          endTime = null;
+          $screen.classList.remove("now");
+          $screen.classList.add("waiting");
+          $screen.textContent = "클릭해서 시작하세요";
+        }
+      });
+    </script>
+  </body>
+</html>

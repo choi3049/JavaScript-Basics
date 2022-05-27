@@ -1,0 +1,54 @@
+//상태창 확인
+• prompt 대화 상자에 사용자가 입력한 메시지가 문자열 형태로 전달되고, 
+입력하지 않고 취소를 누르면 null이 전달됩니다.
+
+• alert 단순한 알림창으로, 호출하면 확인을 누르기 전까지 다음 스크립트 실행이 중단됩니다. 
+디버깅 용도로 사용할 때는 console.log를 사용합니다.
+
+• confirm 사용자에게 확인을 받을 때 사용합니다. 사용자가 확인을 누르면 true가 전달되고, 
+취소를 누르면 false가 전달됩니다.
+
+prompt('사용자에게 표시할 메시지');
+alert('사용자에게 표시할 메시지');
+confirm('사용자에게 표시할 메시지')
+
+
+//HTML 태그 선택하기
+
+document.querySelector로는 하나의 태그만 선택할 수 있고, document.querySelectorAll로는 
+여러 개의 태그를 선택할 수 있습니다.
+
+형식
+
+document.querySelector('선택자')
+document.querySelectorAll('선택자')
+
+document.querySelector('#아이디')
+document.querySelectorAll('.클래스')
+
+document.querySelector('선택자 내부선택자 내부선택자...');
+
+
+//이벤트 
+태그.addEventListener('이벤트 이름', 리스너함수);
+
+리스너 함수의 매개변수로 event 객체를 제공해서 이벤트와 관련된 정보를 얻을 수 있습니다.
+예를 들어, input 태그에 입력된 값을 가져오려면 event.target.value를 넣으면 됩니다. 
+여기서 event.target은 이벤트가 발생한 대상 태그를 가리킵니다.
+
+const 리스너함수 = (event) => {
+  console.log(event.target.value);
+};
+
+//value
+입력창.value // 입력창의 값을 가져옴
+입력창.value = 값 // 입력창에 값을 넣음
+
+//textContent
+태그.textContent // 태그내부의문자를가져옴
+태그.textContent = 값 // 태그 내부의 문자를 해당 값으로 설정함
+
+//focus
+형식
+
+입력창.focus() // 입력창을하이라이트

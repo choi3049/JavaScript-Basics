@@ -22,7 +22,7 @@ target[5] = "f";
 console.log(target);
 
 const target1 = ["가", "나", "다", "라", "바"];
-target1[target1.length] = "마";
+target1[target1.length] = "마"; //length를 이용하여 맨끝에 단어 추가
 console.log(target1);
 
 const target2 = ["나", "다", "라", "마", "바"];
